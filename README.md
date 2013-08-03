@@ -38,3 +38,28 @@ Open listener web app's index.html and refresh it.
 You shall see the new message received on top of the greetings list.
 
 
+## What is the most interesting about the code?
+
+Messaging-related:
+
+* Illustration on how to send custom java bean over the JMS by using binary serialization to the StreamMessage.
+
+* Spring JMS module usage. See ``GreeterServiceImpl``
+
+* Apache Camel usage. Consuming messages from the ActiveMQ queue and putting them to the custom bean. See ``ListenerRouteBuilder``
+
+Spring-related:
+* Loading properties.
+* Using mixed configuration: both annotation-driven and xml-driven configs are used in listener-web-app.
+* Spring MVC web applications.
+
+## What can be improved?
+
+*Left as an excercise to the reader ;)*
+
+* Listener route can be defined in XML only, i.e. ListenerRouteBuilder can be removed at the price of having more XML configuration.
+
+* listener-web-app can use property in the similar fashion as greeter-web-app does.
+
+* greeter-web-app can get rid of jms-context.xml and define the configuration in the annotation-based config to avoid mixing
+annotation-driven and xml-driven configurations.

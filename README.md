@@ -3,8 +3,9 @@ spring-camel-demo
 
 ## What is it?
 
-This demo project illustrates how to use ActiveMQ in multiple project with shared code.
-One demo project is ``greeter-web-app`` or just greeter, application, that sends greeting message to the listener or ``listener-web-app``.
+This demo project illustrates how to use ActiveMQ in multiple-modular project with shared code.
+One demo project is ``greeter-web-app`` or just greeter, application, that sends greeting message to 
+the listener or ``listener-web-app``.
 
 ## How to demo
 
@@ -46,7 +47,8 @@ Messaging-related:
 
 * Spring JMS module usage. See ``GreeterServiceImpl``
 
-* Apache Camel usage. Consuming messages from the ActiveMQ queue and putting them to the custom bean. See ``ListenerRouteBuilder``
+* Apache Camel usage. Consuming messages from the ActiveMQ queue and putting them to the custom bean. 
+See ``ListenerRouteBuilder``
 
 Spring-related:
 * Loading properties.
@@ -57,7 +59,8 @@ Spring-related:
 
 *Left as an excercise to the reader ;)*
 
-* Listener route can be defined in XML only, i.e. ListenerRouteBuilder can be removed at the price of having more XML configuration.
+* Listener route can be defined in XML only, i.e. ListenerRouteBuilder can be removed at the price of 
+having more XML configuration.
 
 * listener-web-app can use property in the similar fashion as greeter-web-app does.
 

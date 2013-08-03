@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:/greeter-jms.properties"/>
+
+    <bean id="greeterConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL">
+                    <value>${greeter.brokerUrl}</value>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="greeterJmsOperations" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="greeterConnectionFactory"/>
+        <property name="defaultDestinationName" value="${greeter.channelName}"/>
+    </bean>
+</beans>

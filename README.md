@@ -9,7 +9,13 @@ the listener or ``listener-web-app``.
 
 ## How to demo
 
-Ensure activemq started. Proceed to the ``${activemq}/bin`` folder and run ``./activemq start``.
+Download and unpack ActiveMQ 5.9 to any dir.
+
+
+Ensure activemq started.
+
+
+Proceed to the ``${activemq}/bin`` folder and run ``./activemq start`` on linux or ``activemq.bat`` on windows.
 
 
 Build the sources in the source folder of spring-camel-demo project:

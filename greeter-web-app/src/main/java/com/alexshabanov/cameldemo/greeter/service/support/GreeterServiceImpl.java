@@ -2,31 +2,31 @@ package com.alexshabanov.cameldemo.greeter.service.support;
 
 import com.alexshabanov.cameldemo.domain.Greeting;
 import com.alexshabanov.cameldemo.greeter.service.GreeterService;
-import org.springframework.jms.core.JmsOperations;
-import org.springframework.jms.core.MessageCreator;
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
+import org.apache.camel.component.jms.JmsComponent;
+import org.apache.camel.impl.DefaultCamelContext;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import javax.jms.StreamMessage;
-import javax.jms.TextMessage;
+import javax.jms.ConnectionFactory;
 
 @Service
 public final class GreeterServiceImpl implements GreeterService {
 
-    @Resource(name = "greeterJmsOperations")
-    private JmsOperations jmsOperations;
 
     @Override
     public void send(final Greeting greeting) {
-        jmsOperations.send(new MessageCreator() {
-            @Override
-            public Message createMessage(Session session) throws JMSException {
-                final TextMessage message = session.createTextMessage(greeting.getMessage());
-                return message;
-            }
-        });
+        CamelContext context = new DefaultCamelContext();
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
+        context.addComponent("test-jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
+
+        ProducerTemplate template = context.createProducerTemplate();
+        try {
+            context.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        template.sendBody("activemq:alexshabanov.cameldemo.greeter", greeting.getMessage());
     }
 }

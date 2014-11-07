@@ -1,15 +1,25 @@
 package com.alexshabanov.cameldemo.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * Greeting demo domain object
  *
  * @author Alexander Shabanov
  */
+//@XmlRootElement
+//@XmlType
 public final class Greeting {
     private String message;
     private int count;
 
     public Greeting() {
+    }
+    public Greeting(String message) {
+        this();
+        setMessage(message);
+        setCount(0);
     }
 
     public Greeting(String message, int count) {

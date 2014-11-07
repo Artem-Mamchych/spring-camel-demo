@@ -11,6 +11,7 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
 import javax.jms.StreamMessage;
+import javax.jms.TextMessage;
 
 @Service
 public final class GreeterServiceImpl implements GreeterService {
@@ -23,9 +24,7 @@ public final class GreeterServiceImpl implements GreeterService {
         jmsOperations.send(new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
-                final StreamMessage message = session.createStreamMessage();
-                message.writeString(greeting.getMessage());
-                message.writeInt(greeting.getCount());
+                final TextMessage message = session.createTextMessage(greeting.getMessage());
                 return message;
             }
         });

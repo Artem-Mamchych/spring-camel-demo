@@ -44,6 +44,7 @@ You shall see 'Message Sent!' message if all is OK.
 Open listener web app's index.html and refresh it.
 You shall see the new message received on top of the greetings list.
 
+Activemq admin page located at ``http://localhost:8161/admin/index.jsp``
 
 ## What is the most interesting about the code?
 

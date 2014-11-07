@@ -12,9 +12,9 @@
 
     <!-- JMS channel: alexshabanov.cameldemo.greeter -->
 
-    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-        <property name="connectionFactory" ref="listenerAmqConnectionFactory"/>
-    </bean>
+	<bean id="test-jms" class="org.apache.camel.component.jms.JmsComponent">
+		<property name="connectionFactory" ref="listenerAmqConnectionFactory"/>
+	</bean>
 
     <bean id="listenerRouteBuilder" class="com.alexshabanov.cameldemo.listener.route.ListenerRouteBuilder"/>
 
